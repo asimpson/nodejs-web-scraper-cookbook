@@ -82,6 +82,7 @@ Since this entire cookbook is based around using Node for scraping the following
 - [saxjs][sax] - XML (rss/feed) parser
 - [cron][cron] - schedule jobs
 - [sqlite][sql] - database of choice, very fast and low resource usage
+- [noodle][noodle] - a Node.js server and module for querying and scraping data from web documents. 
 
 ## Services
 
@@ -123,3 +124,4 @@ I plan to keep this cookbook up to date with new tools and methods as I find the
 [acron]: http://docs.ansible.com/ansible/cron_module.html
 [node]: http://nodejs.org
 [espn]: https://github.com/asimpson/espn-scraper-to-rss
+[noodle]: http://noodlejs.com
