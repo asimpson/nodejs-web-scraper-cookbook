@@ -6,7 +6,7 @@ In this repo I'll try to provide some examples of various strategies for web scr
 
 **First tip**: Always `curl` the target site to understand what comes back, the `-O` and `-L` flags are your friends.
 
-## Overview 
+## Overview
 
 Web scraping according to [Wikipedia][wiki] is:
 
@@ -40,11 +40,11 @@ Pretty great eh? Looks like just like typical jQuery stuff. Parse and filter to 
 
 ## JS-only content
 
-Scraping is all easy and painless with sites that work without JS (like the scenario above :point_up:). This is not the case for sites behind Javascript authentication or sites that are Javascript applications. Thankfully we have [phatomJS][phantom]. Phantom let's you run an actual WebKit browser and navigate the DOM tree as if you were actually interacting with it in a browser, Javascript and all. I've used phantom by itself and I've also paired it with [CasperJS][casper] or [Capybara][capy] (Ruby, I know, but it's worth a mention if that's how you roll). One approach I've used with success is to limit the amount of work I do inside phantom. I'll navigate to the page where my info is and then dump the entire page's worth of HTML to a file and pass it all off to [cheerio][cheerio] which handles traversing and parsing that markup _much_ better than phantom.
+Scraping is all easy and painless with sites that work without JS (like the scenario above :point_up:). This is not the case for sites behind Javascript authentication or sites that are Javascript applications. Thankfully we have [headless Chrome][headless]. Headless Chrome let's you run an instance of Chrome (headlessly). One approach I've used with success is to limit the amount of work I do inside headless. I'll navigate to the page where my info is and then dump the entire page's worth of HTML to a file and pass it all off to [cheerio][cheerio] which handles traversing and parsing that markup _much_ better than headless Chrome. I've also used it to pull the relevant authentication information I need to then make API requests via normal `axios` or `curl` commands.
 
 ## ❤ Wordpress
 
-Wordpress runs half the web (or that's how it seems). This is great news for scrapers since most WP installs [have several RSS feeds][wp] to pull data from. So if you come across a site and you figure out it's a Wordpress install, check if any of the [various built-in feeds][wp] work. 
+Wordpress runs half the web (or that's how it seems). This is great news for scrapers since most WP installs [have several RSS feeds][wp] to pull data from. So if you come across a site and you figure out it's a Wordpress install, check if any of the [various built-in feeds][wp] work.
 
 For parsing a RSS feed, [saxjs][sax] is the best module to use.
 
@@ -58,9 +58,9 @@ Now we need to setup how often our scraper will run and where we will host it.
 
 Scrapers are typically very light on resource usage, I've paired several on the same VPS as my [blog][blog] without a single issue. If you don't have a server to host a scraper, I'd recommend spending a few bucks on a ["Lowend" box][box]. Even `128MB` of RAM is plenty.
 
-I've found using [Ansible][ansible] to be nice for deploying and setting up scrapers. It makes pushing updates (`HTML` changes pretty often) easy and painless. 
+I've found using [Ansible][ansible] to be nice for deploying and setting up scrapers. It makes pushing updates (`HTML` changes pretty often) easy and painless.
 
-I use [cron][cron] to run all my scrapers at set intervals. 
+I use [cron][cron] to run all my scrapers at set intervals.
 
 ---
 
@@ -76,13 +76,13 @@ Since this entire cookbook is based around using Node for scraping the following
 
 - [request][request] - HTTP client
 - [cheerio][cheerio] - DOM parser
-- [phantomjs][phantom] - "headless" WebKit
+- [headless Chrome][headless] - "headless" Chrome
 - [lodash][_] - utility library
 - [async][async] - tools for dealing with asychronous code
 - [saxjs][sax] - XML (rss/feed) parser
 - [cron][cron] - schedule jobs
 - [sqlite][sql] - database of choice, very fast and low resource usage
-- [noodle][noodle] - a Node.js server and module for querying and scraping data from web documents. 
+- [noodle][noodle] - a Node.js server and module for querying and scraping data from web documents.
 
 ## Services
 
@@ -99,7 +99,7 @@ Since this entire cookbook is based around using Node for scraping the following
 
 I plan to keep this cookbook up to date with new tools and methods as I find them. I also plan to include some additional "sample projects" as I find time to commit them. For now, you can reference my [ESPN Scraper + RSS feed][espn] repo as an example of a `request` + `cheerio` + `sqlite` project.
 
-[phantom]: http://phantomjs.org
+[headless]: (https://github.com/GoogleChrome/puppeteer)
 [request]: https://github.com/request/request
 [cheerio]: https://github.com/cheeriojs/cheerio
 [wiki]: https://en.wikipedia.org/wiki/Web_scraping
